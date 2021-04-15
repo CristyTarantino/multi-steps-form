@@ -1,7 +1,7 @@
 # Getting Started with Multi Steps Form
 
 Web application that shows a multi steps web form to collect data from a user before signing up for a service. 
-For more info please follow the [documentation](/docs/assignment);
+For more info please follow the [documentation](./docs/assignment);
 
 ## Available Scripts
 
