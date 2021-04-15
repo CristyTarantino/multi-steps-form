@@ -13,47 +13,45 @@ import UserForm from './Forms/UserForm';
 import PrivacyForm from './Forms/PrivacyForm';
 import SignUpSuccess from './SignUpSuccess';
 
-import validationSchema from './FormModel/validationSchema';
-import signUpFormModel from './FormModel/signUpFormModel';
-import formInitialValues from './FormModel/formInitialValues';
+import validationSchema from '../../../models/SignUpForm/validationSchema';
+import signUpFormModel from '../../../models/SignUpForm/signUpFormModel';
+import formInitialValues from '../../../models/SignUpForm/formInitialValues';
 
 import useStyles from './styles';
 
-const steps = ['User', 'Privacy', 'Done'];
 const { formId, formField } = signUpFormModel;
 
-const renderStepContent = (step: number): JSX.Element => {
-  switch (step) {
-    case 0:
-      return <UserForm formField={formField} />;
-    case 1:
-      return <PrivacyForm formField={formField} />;
-    case 2:
-      return <SignUpSuccess />;
-    default:
-      return <div>Not Found</div>;
-  }
+const getSteps = () => ['User', 'Privacy', 'Done'];
+
+const getStepContent = () => [
+  <UserForm formField={formField} />,
+  <PrivacyForm formField={formField} />,
+];
+
+const sleep = (ms: number) => {
+  return new Promise(resolve => setTimeout(resolve, ms));
 };
 
 const SignUpPage: React.FC = (): JSX.Element => {
   const classes = useStyles();
+  const steps = getSteps();
+  const stepsContent = getStepContent();
   const [activeStep, setActiveStep] = useState(0);
-  const currentValidationSchema = validationSchema[activeStep];
-  const isLastStep = activeStep === steps.length - 2;
-
-  const sleep = (ms: number) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  };
+  const [activeStepContent, setActiveStepContent] = useState(0);
+  const currentValidationSchema = validationSchema[activeStepContent];
+  const isLastStep = activeStepContent === stepsContent.length - 1;
 
   const submitForm = async (
     values: { [x: string]: string | boolean },
     actions: { setTouched?: (arg0: unknown) => void; setSubmitting: any },
   ) => {
+    // pretend to make a call
     await sleep(1000);
-    alert(JSON.stringify(values, null, 2));
+    console.log(JSON.stringify(values, null, 2));
     actions.setSubmitting(false);
 
-    setActiveStep(activeStep + 1);
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
+    setActiveStepContent(prevActiveStep => prevActiveStep + 1);
   };
 
   const handleSubmit = (
@@ -63,23 +61,26 @@ const SignUpPage: React.FC = (): JSX.Element => {
       setSubmitting: any;
     },
   ) => {
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
+
     if (isLastStep) {
       submitForm(values, actions);
     } else {
-      setActiveStep(activeStep + 1);
+      setActiveStepContent(prevActiveStep => prevActiveStep + 1);
       actions.setTouched({});
       actions.setSubmitting(false);
     }
   };
 
   const handleBack = () => {
-    setActiveStep(activeStep - 1);
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
+    setActiveStepContent(prevActiveStep => prevActiveStep - 1);
   };
 
   return (
     <>
       <Typography component="h1" variant="h4" align="center">
-        Checkout
+        Create a new account
       </Typography>
       <Stepper activeStep={activeStep} className={classes.stepper}>
         {steps.map(label => (
@@ -89,7 +90,7 @@ const SignUpPage: React.FC = (): JSX.Element => {
         ))}
       </Stepper>
       <>
-        {activeStep === steps.length - 1 ? (
+        {activeStepContent === steps.length - 1 ? (
           <SignUpSuccess />
         ) : (
           <Formik
@@ -100,7 +101,7 @@ const SignUpPage: React.FC = (): JSX.Element => {
           >
             {({ isSubmitting }) => (
               <Form id={formId}>
-                {renderStepContent(activeStep)}
+                {getStepContent()[activeStepContent]}
 
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (

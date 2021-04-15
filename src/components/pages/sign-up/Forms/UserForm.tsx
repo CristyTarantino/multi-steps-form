@@ -42,7 +42,12 @@ const UserForm: React.FC<UserFormProps> = ({ formField }): JSX.Element => {
           <InputField name={email.name} label={email.label} fullWidth />
         </Grid>
         <Grid item xs={12}>
-          <InputField name={password.name} label={password.label} fullWidth />
+          <InputField
+            name={password.name}
+            label={password.label}
+            type="password"
+            fullWidth
+          />
         </Grid>
       </Grid>
     </>

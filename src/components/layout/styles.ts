@@ -1,21 +1,6 @@
-import {
-  createMuiTheme,
-  responsiveFontSizes,
-  makeStyles,
-} from '@material-ui/core/styles';
-import { cyan } from '@material-ui/core/colors';
+import { makeStyles } from '@material-ui/core/styles';
 
-const themePallette = createMuiTheme({
-  palette: {
-    type: 'dark',
-    primary: cyan,
-    secondary: cyan,
-  },
-});
-
-const theme = responsiveFontSizes(themePallette);
-
-const useStyle = makeStyles(() => ({
+const useStyle = makeStyles(theme => ({
   root: {
     width: 'auto',
     marginLeft: theme.spacing(2),
@@ -25,8 +10,6 @@ const useStyle = makeStyles(() => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
-    backgroundColor: theme.palette.background.default,
-    color: theme.palette.text.primary,
   },
   paper: {
     marginTop: theme.spacing(3),
@@ -40,4 +23,4 @@ const useStyle = makeStyles(() => ({
   },
 }));
 
-export { theme, useStyle };
+export default useStyle;

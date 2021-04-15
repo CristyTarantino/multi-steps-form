@@ -5,7 +5,7 @@ import { TextField } from '@material-ui/core';
 
 const InputField: React.FC<any> = (props): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { errorText, ...rest } = props;
+  const { errorText, type, ...rest } = props;
   const [field, meta] = useField(props);
 
   const renderHelperText = (): string | null => {
@@ -30,7 +30,7 @@ const InputField: React.FC<any> = (props): JSX.Element => {
 
   return (
     <TextField
-      type="text"
+      type={type || 'text'}
       error={handleError(meta.touched, meta.error)}
       helperText={renderHelperText()}
       // eslint-disable-next-line react/jsx-props-no-spreading

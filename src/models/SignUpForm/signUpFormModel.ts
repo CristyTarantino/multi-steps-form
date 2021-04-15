@@ -13,22 +13,23 @@ export default {
     email: {
       name: 'email',
       label: 'email*',
-      requiredErrorMsg: 'email is required',
+      requiredErrorMsg: 'Email is required',
     },
     password: {
       name: 'password',
       label: 'password*',
-      requiredErrorMsg: 'password is required',
+      requiredErrorMsg: 'Password is required',
     },
     useEmailForUpdates: {
       name: 'useEmailForUpdates',
-      label: 'Receive updates about Tray.io product by email',
+      label: 'Receive updates about the Company product by email',
       checked: true,
     },
     useEmailForCommunication: {
       name: 'useEmailForCommunication',
       label:
-        'Receive communication by email for other products created by the Tray.io team',
+        'Receive communication by email for other products created by the Company team',
+      checked: false,
     },
   },
 };

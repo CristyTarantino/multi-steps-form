@@ -7,10 +7,12 @@ type PrivacyFormProps = {
     useEmailForUpdates: {
       name: string;
       label: string;
+      checked: boolean;
     };
     useEmailForCommunication: {
       name: string;
       label: string;
+      checked: boolean;
     };
   };
 };
@@ -29,12 +31,14 @@ const PrivacyForm: React.FC<PrivacyFormProps> = ({
           <CheckboxField
             name={useEmailForUpdates.name}
             label={useEmailForUpdates.label}
+            checked={useEmailForUpdates.checked}
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <CheckboxField
             name={useEmailForCommunication.name}
             label={useEmailForCommunication.label}
+            checked={useEmailForCommunication.checked}
           />
         </Grid>
       </Grid>

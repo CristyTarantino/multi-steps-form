@@ -10,6 +10,7 @@ import {
 
 type CheckboxFieldProps = {
   label: string;
+  checked: boolean;
 };
 
 const CheckboxField: React.FC<
@@ -17,8 +18,6 @@ const CheckboxField: React.FC<
 > = ({ label, ...rest }): JSX.Element => {
   const [field, meta, helper] = useField(rest);
   const { setValue } = helper;
-
-  console.log({ label, ...rest });
 
   const renderHelperText = (): JSX.Element | null => {
     const [touched, error] = at(meta, 'touched', 'error');
@@ -38,8 +37,14 @@ const CheckboxField: React.FC<
       <FormControlLabel
         value={field.checked}
         checked={field.checked}
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        control={<Checkbox {...field} onChange={handleOnChange} />}
+        control={
+          <Checkbox
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...field}
+            onChange={handleOnChange}
+            defaultChecked={rest.checked}
+          />
+        }
         label={label}
       />
       {renderHelperText()}
