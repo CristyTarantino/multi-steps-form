@@ -6,8 +6,7 @@
     "start": "react-scripts start",
     "pre:build": "npm run format && npm run lint && npm run test:coverage && npm run build",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "test:coverage": "react-scripts test --coverage --runInBand --watchAll=false",
+    "test": "react-scripts test --coverage --runInBand --watchAll=false",
     "eject": "react-scripts eject",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,md,json,css,scss}'",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix --color"
