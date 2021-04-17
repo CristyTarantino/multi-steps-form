@@ -4,13 +4,9 @@ dist: xenial
 env:
   global:
     - CC_TEST_REPORTER_ID=b1567a7ea511a013af2b33cac1869186a39b1c9869acdfe3c3fe790d49b34b7f
+    - COVERALLS_REPO_TOKEN=m7Toz5fQGrZd6hv5KBuI7XsJw4dBXdTFy
 node_js:
   - "stable"
-jobs:
-  include:
-    - stage: Produce Coverage
-      node_js: node
-      script: jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
 cache:
   directories:
     - node_modules
@@ -24,6 +20,8 @@ script:
   - npm run build || true
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - && rm -rf ./coverage
 deploy:
   skip_cleanup: true
   provider: pages
