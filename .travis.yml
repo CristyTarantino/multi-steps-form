@@ -1,3 +1,6 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=b1567a7ea511a013af2b33cac1869186a39b1c9869acdfe3c3fe790d49b34b7f
 language: node_js
 node_js:
   - "stable"
@@ -13,7 +16,7 @@ script:
   - npm run test
   - npm run build || true
 after_script:
-  - ./cc-test-reporter after-build --exit-code $CC_TEST_REPORTER_ID
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 deploy:
   provider: pages
   skip_cleanup: true
