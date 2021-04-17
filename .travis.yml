@@ -6,6 +6,11 @@ env:
     - CC_TEST_REPORTER_ID=b1567a7ea511a013af2b33cac1869186a39b1c9869acdfe3c3fe790d49b34b7f
 node_js:
   - "stable"
+jobs:
+  include:
+    - stage: Produce Coverage
+      node_js: node
+      script: jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
 cache:
   directories:
     - node_modules
@@ -14,6 +19,7 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 script:
+  - npm install -g coveralls
   - npm run test
   - npm run build || true
 after_script:

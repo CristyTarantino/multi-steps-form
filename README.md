@@ -1,3 +1,7 @@
+[![Build Status](https://www.travis-ci.com/CristyTarantino/multi-steps-form.svg?branch=master)](https://www.travis-ci.com/CristyTarantino/multi-steps-form)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d9f76f24bcec03d4c88a/maintainability)](https://codeclimate.com/github/CristyTarantino/multi-steps-form/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d9f76f24bcec03d4c88a/test_coverage)](https://codeclimate.com/github/CristyTarantino/multi-steps-form/test_coverage)
+
 # Getting Started with Multi Steps Form
 
 Web application that shows a multi steps web form to collect data from a user before signing up for a service.
