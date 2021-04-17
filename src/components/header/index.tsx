@@ -6,8 +6,8 @@ import Switch from '@material-ui/core/Switch';
 import useStyles from './styles';
 
 type HeaderProps = {
-  themeState: any;
-  onThemeChange: any;
+  themeState: boolean;
+  onThemeChange: () => void;
 };
 
 const Header: React.FC<HeaderProps> = ({

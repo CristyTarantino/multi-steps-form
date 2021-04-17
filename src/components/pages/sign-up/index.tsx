@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import {
-  Stepper,
+  Button,
+  CircularProgress,
   Step,
   StepLabel,
-  Button,
+  Stepper,
   Typography,
-  CircularProgress,
 } from '@material-ui/core';
-import { Formik, Form } from 'formik';
+import { Form, Formik, FormikTouched } from 'formik';
 
 import UserForm from './Forms/UserForm';
 import PrivacyForm from './Forms/PrivacyForm';
@@ -43,10 +43,16 @@ const SignUpPage: React.FC = (): JSX.Element => {
 
   const submitForm = async (
     values: { [x: string]: string | boolean },
-    actions: { setTouched?: (arg0: unknown) => void; setSubmitting: any },
+    actions: {
+      setTouched?: (
+        arg0: FormikTouched<{ [x: string]: string | boolean }>,
+      ) => void;
+      setSubmitting: (arg0: boolean) => void;
+    },
   ) => {
     // pretend to make a call
     await sleep(1000);
+    // eslint-disable-next-line no-console
     console.log(JSON.stringify(values, null, 2));
     actions.setSubmitting(false);
 
@@ -55,16 +61,18 @@ const SignUpPage: React.FC = (): JSX.Element => {
   };
 
   const handleSubmit = (
-    values: any,
+    values: { [x: string]: string | boolean },
     actions: {
-      setTouched: any;
-      setSubmitting: any;
+      setTouched: (
+        arg0: FormikTouched<{ [x: string]: string | boolean }>,
+      ) => void;
+      setSubmitting: (arg0: boolean) => void;
     },
   ) => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
 
     if (isLastStep) {
-      submitForm(values, actions);
+      submitForm(values, actions).then(() => ({}));
     } else {
       setActiveStepContent(prevActiveStep => prevActiveStep + 1);
       actions.setTouched({});

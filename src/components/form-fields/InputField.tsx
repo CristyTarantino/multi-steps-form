@@ -1,11 +1,17 @@
 import React from 'react';
-import { useField, FieldHookConfig } from 'formik';
+import { useField } from 'formik';
 import at from 'lodash/at';
 import { TextField } from '@material-ui/core';
 
-const InputField: React.FC<any> = (props): JSX.Element => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { errorText, type, ...rest } = props;
+type InputFieldProps = {
+  fullWidth: boolean;
+  label: string;
+  name: string;
+  type?: string;
+};
+
+const InputField: React.FC<InputFieldProps> = (props): JSX.Element => {
+  const { type, ...rest } = props;
   const [field, meta] = useField(props);
 
   const renderHelperText = (): string | null => {

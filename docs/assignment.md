@@ -45,6 +45,7 @@ Please send us:
 
 The purpose of this exercise is for us to see some of the code you wrote and should be proud of. We will especially consider:
 k
+
 - Overall user experience
 - Clarity of instructions
 - Code organisation
