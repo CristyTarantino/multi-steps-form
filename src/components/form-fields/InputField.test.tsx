@@ -80,7 +80,7 @@ describe('<TextInput/>', () => {
 
     const mockProps = { ...mockField, label: 'First Name', fullWidth: true };
     // eslint-disable-next-line react/jsx-props-no-spreading
-    render(<InputField {...mockProps} />).debug();
+    render(<InputField {...mockProps} />);
     expect(screen.getByLabelText('First Name')).toHaveProperty(
       'type',
       'password',
@@ -107,7 +107,7 @@ describe('<TextInput/>', () => {
 
     const mockProps = { ...mockField, label: 'First Name', fullWidth: true };
     // eslint-disable-next-line react/jsx-props-no-spreading
-    render(<InputField {...mockProps} />).debug();
+    render(<InputField {...mockProps} />);
     expect(document.getElementById('firstName-helper-text')).toHaveTextContent(
       'Error Message',
     );
