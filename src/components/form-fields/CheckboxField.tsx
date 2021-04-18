@@ -10,7 +10,7 @@ import {
 
 type CheckboxFieldProps = {
   label: string;
-  checked: boolean;
+  defaultChecked: boolean;
 };
 
 const CheckboxField: React.FC<
@@ -42,7 +42,7 @@ const CheckboxField: React.FC<
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...field}
             onChange={handleOnChange}
-            defaultChecked={rest.checked}
+            defaultChecked={rest.defaultChecked}
           />
         }
         label={label}

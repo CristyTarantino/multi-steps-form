@@ -86,6 +86,7 @@ describe('<TextInput/>', () => {
       'password',
     );
   });
+
   it('renders the input with error', () => {
     const mockMeta = {
       touched: true,

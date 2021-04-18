@@ -62,6 +62,7 @@
       "!<rootDir>/path/to/dir/"
     ],
     "coveragePathIgnorePatterns": [
+      "index.text.tsx",
       "./src/*/*.types.{ts,tsx}",
       "./src/index.tsx",
       "./src/serviceWorker.ts"
