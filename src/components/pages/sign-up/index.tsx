@@ -32,6 +32,13 @@ const sleep = (ms: number) => {
   return new Promise(resolve => setTimeout(resolve, ms));
 };
 
+type actionsType = {
+  setTouched: (arg0: FormikTouched<{ [x: string]: string | boolean }>) => void;
+  setSubmitting: (arg0: boolean) => void;
+};
+
+type valuesType = { [x: string]: string | boolean };
+
 const SignUpPage: React.FC = (): JSX.Element => {
   const classes = useStyles();
   const steps = getSteps();
@@ -41,15 +48,7 @@ const SignUpPage: React.FC = (): JSX.Element => {
   const currentValidationSchema = validationSchema[activeStepContent];
   const isLastStep = activeStepContent === stepsContent.length - 1;
 
-  const submitForm = async (
-    values: { [x: string]: string | boolean },
-    actions: {
-      setTouched?: (
-        arg0: FormikTouched<{ [x: string]: string | boolean }>,
-      ) => void;
-      setSubmitting: (arg0: boolean) => void;
-    },
-  ) => {
+  const submitForm = async (values: valuesType, actions: actionsType) => {
     // pretend to make a call
     await sleep(1000);
     // eslint-disable-next-line no-console
@@ -60,23 +59,19 @@ const SignUpPage: React.FC = (): JSX.Element => {
     setActiveStepContent(prevActiveStep => prevActiveStep + 1);
   };
 
-  const handleSubmit = (
-    values: { [x: string]: string | boolean },
-    actions: {
-      setTouched: (
-        arg0: FormikTouched<{ [x: string]: string | boolean }>,
-      ) => void;
-      setSubmitting: (arg0: boolean) => void;
-    },
-  ) => {
+  const handleNext = (actions: actionsType) => {
+    setActiveStepContent(prevActiveStep => prevActiveStep + 1);
+    actions.setTouched({});
+    actions.setSubmitting(false);
+  };
+
+  const handleSubmit = (values: valuesType, actions: actionsType) => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
 
     if (isLastStep) {
       submitForm(values, actions).then(() => ({}));
     } else {
-      setActiveStepContent(prevActiveStep => prevActiveStep + 1);
-      actions.setTouched({});
-      actions.setSubmitting(false);
+      handleNext(actions);
     }
   };
 
@@ -104,7 +99,6 @@ const SignUpPage: React.FC = (): JSX.Element => {
           <Formik
             initialValues={formInitialValues}
             validationSchema={currentValidationSchema}
-            // eslint-disable-next-line no-console
             onSubmit={handleSubmit}
           >
             {({ isSubmitting }) => (

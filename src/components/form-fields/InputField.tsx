@@ -14,13 +14,13 @@ const InputField: React.FC<InputFieldProps> = (props): JSX.Element => {
   const { type, ...rest } = props;
   const [field, meta] = useField(props);
 
-  const renderHelperText = (): string | null => {
+  const renderHelperText = (): string | undefined => {
     const [touched, error] = at(meta, 'touched', 'error');
     if (touched && error) {
       return error;
     }
 
-    return null;
+    return undefined;
   };
 
   const handleError = (
@@ -36,6 +36,7 @@ const InputField: React.FC<InputFieldProps> = (props): JSX.Element => {
 
   return (
     <TextField
+      id={field.name}
       type={type || 'text'}
       error={handleError(meta.touched, meta.error)}
       helperText={renderHelperText()}
