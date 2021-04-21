@@ -8,6 +8,13 @@
 Web application that shows a multi steps web form to collect data from a user before signing up for a service.
 For more info please follow the [documentation](./docs/assignment.md);
 
+## Get started
+
+In the project directory, you run `yarn` to install all dependancy. 
+Then `yarn start` to start coding.
+
+Alternatively follow one of the available scripts below.
+
 ## Available Scripts
 
 In the project directory, you can run:
