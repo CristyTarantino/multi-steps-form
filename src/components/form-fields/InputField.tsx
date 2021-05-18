@@ -41,7 +41,6 @@ const InputField: React.FC<InputFieldProps> = (props): JSX.Element => {
       error={handleError(meta.touched, meta.error)}
       helperText={renderHelperText()}
       {...field}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...rest}
     />
   );
