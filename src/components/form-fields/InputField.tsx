@@ -27,7 +27,7 @@ const InputField: React.FC<InputFieldProps> = (props): JSX.Element => {
     touched: string | boolean,
     error: string | undefined,
   ): boolean | undefined => {
-    if (touched && touched !== '' && error & (error !== '')) {
+    if (touched && touched !== '' && error && error !== '') {
       return true;
     }
 

@@ -68,17 +68,17 @@
       "./src/serviceWorker.ts"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "**/*.{md,json,css,scss,html,js,jsx,ts,tsx}": "prettier --write",
     "./src/**/*.{js,jsx,ts,tsx}": [
       "eslint --cache --fix",
       "npm run test:coverage"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "browserslist": {
     "production": [
